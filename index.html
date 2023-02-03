@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Color picker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-side">
+        <input type="file" id="file-input" />
+        <div class="color-wrapper">
+          <div class="color-preview" id="hovered-color"></div>
+          <h5 class="hovered-color-desc">Hovered color</h5>
+          <p id="hovered-color-value"></p>
+        </div>
+        <div class="color-wrapper">
+          <div class="color-preview" id="selected-color"></div>
+          <h5 class="selected-color-desc">Selected color</h5>
+          <p id="selected-color-value"></p>
+        </div>
+        <div class="color-wrapper" id="random-color-wrapper"></div>
+      </div>
+      <div class="right-side">
+        <div id="canvas-wrapper" class="canvas-wrapper">
+          <canvas id="canvas"></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

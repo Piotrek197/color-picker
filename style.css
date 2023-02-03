@@ -1,0 +1,46 @@
+.color-cell {
+  color: white;
+  text-align: center;
+}
+
+th {
+  width: 150px;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .left-side,
+.container .right-side {
+  width: 50%;
+}
+
+.container .left-side .color-preview {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.container .left-side .color-wrapper {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .right-side .canvas-wrapper {
+  position: relative;
+}
+
+.color-pin {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+/*# sourceMappingURL=style.css.map */
