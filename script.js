@@ -5,6 +5,7 @@ const randomColor = document.getElementById("random-color");
 const imgInp = document.getElementById("file-input");
 const canvasWrapper = document.getElementById("canvas-wrapper");
 const addColorButton = document.getElementById("add-color-button");
+const addRandomColor = document.getElementById("add-random-color");
 
 const MAX_WIDTH = window.innerWidth * 0.5;
 const MAX_HEIGHT = window.innerHeight * 0.8;
@@ -28,6 +29,7 @@ imgInp.onchange = evt => {
     document.querySelectorAll(".color-wrapper").forEach(cp => {
       cp.style.display = "flex";
     });
+    addRandomColor.style.display = "inline-block";
   }
 };
 
@@ -55,6 +57,15 @@ function drawImage(file) {
       const color = pick(event, selectedColor, null, ctx);
       addColorButton.dataset.color = color;
       addColorButton.style.display = "inline-block";
+    });
+    addRandomColor.addEventListener("click", () => {
+      addPin(getRandomInt(width), getRandomInt(height), ctx);
+      document.querySelectorAll(".color-preview").forEach(colorPreview => {
+        colorPreview.removeEventListener("click", deleteColor);
+      });
+      document.querySelectorAll(".color-preview").forEach(colorPreview => {
+        colorPreview.addEventListener("click", deleteColor);
+      });
     });
     displayColors(width, height, ctx);
   });
