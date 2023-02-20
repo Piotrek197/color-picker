@@ -40,4 +40,21 @@ th {
 .add-color-button,
 .add-random-color {
   display: none;
+}
+
+.magnifier-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.magnifier-pointer {
+  width: 22px;
+  height: 22px;
+  border: 1px aqua solid;
+  position: absolute;
+  left: 122px;
+  top: 122px;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }/*# sourceMappingURL=style.css.map */

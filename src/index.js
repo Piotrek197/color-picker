@@ -1,4 +1,5 @@
-console.log("Siemka z konsoli");
+import { makeid, getRandomInt, getImageXY } from "./helpers";
+
 const hoveredColor = document.getElementById("hovered-color");
 const selectedColor = document.getElementById("selected-color");
 const randomColor = document.getElementById("random-color");
@@ -6,9 +7,6 @@ const imgInp = document.getElementById("file-input");
 const canvasWrapper = document.getElementById("canvas-wrapper");
 const addColorButton = document.getElementById("add-color-button");
 const addRandomColor = document.getElementById("add-random-color");
-
-const MAX_WIDTH = window.innerWidth * 0.5;
-const MAX_HEIGHT = window.innerHeight * 0.8;
 
 const DEFAULT_COLORS = 10;
 
@@ -50,9 +48,34 @@ function drawImage(file) {
     // console.log("image size", this.width, this.height);
     // console.log(getRandomInt(this.width), getRandomInt(this.height));
 
+    const pixelatedZoomCtx = document.getElementById("pixelated-zoom").getContext("2d");
+    pixelatedZoomCtx.imageSmoothingEnabled = false;
+    pixelatedZoomCtx.mozImageSmoothingEnabled = false;
+    pixelatedZoomCtx.webkitImageSmoothingEnabled = false;
+    pixelatedZoomCtx.msImageSmoothingEnabled = false;
+
+    const zoom = (ctx, x, y) => {
+      ctx.drawImage(
+        canvas,
+        Math.min(Math.max(0, x - 5), img.width - 10),
+        Math.min(Math.max(0, y - 5), img.height - 10),
+        9,
+        9,
+        0,
+        0,
+        200,
+        200
+      );
+    };
+
     img.style.display = "none";
 
-    canvas.addEventListener("mousemove", event => pick(event, hoveredColor, null, ctx));
+    canvas.addEventListener("mousemove", event => {
+      pick(event, hoveredColor, null, ctx);
+      const x = event.layerX;
+      const y = event.layerY;
+      zoom(pixelatedZoomCtx, x, y);
+    });
     canvas.addEventListener("click", event => {
       const color = pick(event, selectedColor, null, ctx);
       addColorButton.dataset.color = color;
@@ -102,10 +125,6 @@ function addColorToPallete(color) {
   }
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
 function addPin(x, y, ctx) {
   const pin = document.createElement("div");
 
@@ -127,22 +146,6 @@ function addPin(x, y, ctx) {
   // console.log("pin coords", x, y);
   document.getElementById("canvas-wrapper").appendChild(pin);
   // console.log("random c", x, y);
-}
-
-function getImageXY(width, height) {
-  if (width > height) {
-    if (width > MAX_WIDTH) {
-      height = height * (MAX_WIDTH / width);
-      width = MAX_WIDTH;
-    }
-  } else {
-    if (height > MAX_HEIGHT) {
-      width = width * (MAX_HEIGHT / height);
-      height = MAX_HEIGHT;
-    }
-  }
-
-  return [width, height];
 }
 
 function deleteAllPins() {
@@ -186,16 +189,4 @@ function pick(event, destination, random, ctx) {
     document.getElementById(`${destination.id}-value`).textContent = rgba;
 
   return rgba;
-}
-
-function makeid(length = 10) {
-  let result = "";
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
-  }
-  return result;
 }

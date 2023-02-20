@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Color picker</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <div class="container">
@@ -22,6 +22,11 @@
         </div>
         <div class="color-wrapper" id="random-color-wrapper"></div>
         <button class="add-random-color" id="add-random-color">Add random</button>
+        Magnifier
+        <div class="magnifier-wrapper">
+          <canvas id="pixelated-zoom" class="pixelated-magnifier" width="200" height="200"></canvas>
+          <div class="magnifier-pointer"></div>
+        </div>
       </div>
       <div class="right-side">
         <div id="canvas-wrapper" class="canvas-wrapper">
@@ -29,6 +34,6 @@
         </div>
       </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
