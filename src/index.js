@@ -55,23 +55,18 @@ function drawImage(file) {
     pixelatedZoomCtx.msImageSmoothingEnabled = false;
 
     const zoom = (ctx, x, y) => {
-      ctx.drawImage(
-        canvas,
-        Math.min(Math.max(0, x - 5), img.width - 10),
-        Math.min(Math.max(0, y - 5), img.height - 10),
-        9,
-        9,
-        0,
-        0,
-        200,
-        200
-      );
+      ctx.drawImage(canvas, x - 2, y - 2, 5, 5, 0, 0, 100, 100);
     };
 
     img.style.display = "none";
 
     canvas.addEventListener("mousemove", event => {
       pick(event, hoveredColor, null, ctx);
+      console.log(event);
+      const magnifier = document.getElementById("magnifier-wrapper");
+      magnifier.style.left = event.layerX + 1 + "px";
+      magnifier.style.top = event.layerY + 1 + "px";
+      magnifier.style.display = "block";
       const x = event.layerX;
       const y = event.layerY;
       zoom(pixelatedZoomCtx, x, y);
