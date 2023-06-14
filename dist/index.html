@@ -8,16 +8,19 @@
   <body>
     <div class="container">
       <div class="left-side">
-        <input type="file" id="file-input" />
+        <input type="file" id="file-input" accept="image/png, image/jpeg"/>
         <div class="color-wrapper">
-          <div class="color-preview" id="hovered-color"></div>
-          <h5 class="hovered-color-desc">Hovered color</h5>
-          <p id="hovered-color-value"></p>
+          <!-- <div class="color-preview" id="hovered-color"></div> -->
+          <!-- <h5 class="hovered-color-desc">Hovered color</h5> -->
+          <!-- <p id="hovered-color-value"></p> -->
         </div>
+        <h5 class="selected-color-desc">Selected color</h5>
         <div class="color-wrapper" id="selected-color-wrapper">
-          <div class="color-preview" id="selected-color"></div>
-          <h5 class="selected-color-desc">Selected color</h5>
-          <p id="selected-color-value"></p>
+          <div class="color-preview selected-color" id="selected-color"></div>
+          <div class="input-wrapper">
+            <input type="text" id="selected-color-value"/>
+            <img src="../copy.svg" role="button" class="copy-button" />
+          </div>
           <button id="add-color-button" class="add-color-button">Add color</button>
         </div>
         <div class="color-wrapper" id="random-color-wrapper"></div>
@@ -25,15 +28,25 @@
       </div>
       <div class="right-side">
         <div id="canvas-wrapper" class="canvas-wrapper">
+          <label for="file-input" class="file-input-label" id="file-input-label">
+            <img src="../photo.svg" alt="photo icon" width="50px" class="photo-icon" />
+            <small>Upload your photo</small>
+          </label>
           <canvas id="canvas"></canvas>
-          <div class="magnifier-wrapper" id="magnifier-wrapper">
-            <canvas
-              id="pixelated-zoom"
-              class="pixelated-magnifier"
-              width="100"
-              height="100"
-            ></canvas>
-            <div class="magnifier-pointer"></div>
+          <div class="preview-cursor" id="preview-cursor" style="position: absolute">
+            <div class="magnifier-wrapper" id="magnifier-wrapper">
+              <canvas
+                id="pixelated-zoom"
+                class="pixelated-magnifier"
+                width="100"
+                height="100"
+              ></canvas>
+              <div class="magnifier-pointer"></div>
+            </div>
+            <div class="hovered-color-preview">
+              <div style="width: 50%">Color:</div>
+              <div style="width: 50%" id="hovered-color"></div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-const MAX_WIDTH = window.innerWidth * 0.5;
+const MAX_WIDTH = window.innerWidth * 0.9 * 0.5;
 const MAX_HEIGHT = window.innerHeight * 0.8;
 
 export function makeid(length = 10) {

@@ -1,3 +1,8 @@
+body {
+  background-color: #1e1e1e;
+  color: white;
+}
+
 .color-cell {
   color: white;
   text-align: center;
@@ -9,6 +14,9 @@ th {
 
 .container {
   display: flex;
+  width: 90%;
+  margin: 10vh auto;
+  position: relative;
 }
 .container .left-side,
 .container .right-side {
@@ -21,11 +29,70 @@ th {
   cursor: pointer;
 }
 .container .left-side .color-wrapper {
-  display: none;
   align-items: center;
+}
+.container .left-side h5 {
+  font-size: 1.5rem;
+  margin-block: 0.5rem;
+}
+.container .left-side #selected-color-wrapper {
+  border: 1px #989898 solid;
+  border-radius: 10px;
+  display: flex;
+  padding: 0.5rem 1rem;
+  width: 50%;
+}
+.container .left-side #selected-color-wrapper .selected-color {
+  background-color: transparent;
+  border: 1px white solid;
+  margin-right: 1.5rem;
+  width: 35px;
+  height: 35px;
+}
+.container .left-side #selected-color-wrapper #selected-color-value {
+  background-color: #000;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 0.5rem;
+  color: white;
+}
+.container .left-side #selected-color-wrapper .input-wrapper {
+  position: relative;
+}
+.container .left-side #selected-color-wrapper .input-wrapper .copy-button {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }
 .container .right-side .canvas-wrapper {
   position: relative;
+  min-width: 50%;
+  min-height: 50vh;
+  border-radius: 1rem;
+  background-color: #2f2f2f;
+}
+.container .right-side .canvas-wrapper .file-input-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.container .right-side .canvas-wrapper .preview-cursor {
+  display: none;
+}
+.container .right-side .canvas-wrapper--hide {
+  background-color: transparent !important;
 }
 
 .color-pin {
@@ -45,11 +112,6 @@ th {
 .magnifier-wrapper {
   width: 100px;
   height: 100px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9;
-  display: none;
 }
 
 .magnifier-pointer {
@@ -60,4 +122,14 @@ th {
   left: 40px;
   top: 40px;
   z-index: 10;
+}
+
+.hovered-color-preview {
+  width: 100%;
+  min-height: 25px;
+  display: flex;
+  background-color: white;
+}
+.hovered-color-preview div {
+  width: 50%;
 }/*# sourceMappingURL=style.css.map */

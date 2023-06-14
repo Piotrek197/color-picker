@@ -23,9 +23,10 @@ imgInp.onchange = evt => {
   if (file) {
     deleteAllPins();
     drawImage(file);
+    // displayColors(width, height, ctx);
 
     document.querySelectorAll(".color-wrapper").forEach(cp => {
-      cp.style.display = "flex";
+      cp.style.display = "inline-flex";
     });
     addRandomColor.style.display = "inline-block";
   }
@@ -39,6 +40,7 @@ function drawImage(file) {
   const ctx = canvas.getContext("2d");
   img.addEventListener("load", function () {
     const [width, height] = getImageXY(this.width, this.height);
+    document.getElementById("file-input-label").remove();
     canvas.width = width;
     canvas.height = height;
     canvasWrapper.style.width = width;
@@ -63,7 +65,7 @@ function drawImage(file) {
     canvas.addEventListener("mousemove", event => {
       pick(event, hoveredColor, null, ctx);
       console.log(event);
-      const magnifier = document.getElementById("magnifier-wrapper");
+      const magnifier = document.getElementById("preview-cursor");
       magnifier.style.left = event.layerX + 1 + "px";
       magnifier.style.top = event.layerY + 1 + "px";
       magnifier.style.display = "block";
@@ -85,7 +87,6 @@ function drawImage(file) {
         colorPreview.addEventListener("click", deleteColor);
       });
     });
-    displayColors(width, height, ctx);
   });
 }
 
@@ -181,7 +182,7 @@ function pick(event, destination, random, ctx) {
   destination.style.background = rgba;
 
   if (document.getElementById(`${destination.id}-value`))
-    document.getElementById(`${destination.id}-value`).textContent = rgba;
+    document.getElementById(`${destination.id}-value`).value = rgba;
 
   return rgba;
 }

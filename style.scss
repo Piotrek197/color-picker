@@ -1,3 +1,8 @@
+body{
+  background-color: #1e1e1e;
+  color:white;
+}
+
 .color-cell {
   color: white;
   text-align: center;
@@ -8,6 +13,9 @@ th {
 
 .container {
   display: flex;
+  width:90%;
+  margin:10vh auto;
+  position: relative;
 
   .left-side,
   .right-side {
@@ -23,14 +31,86 @@ th {
     }
 
     .color-wrapper {
-      display: none;
+      // display: none;
       align-items: center;
+    }
+
+    h5{
+      font-size: 1.5rem;
+      margin-block: 0.5rem;
+    }
+
+    #selected-color-wrapper{
+      border: 1px #989898 solid;
+      border-radius: 10px;
+      display:flex;
+      padding: 0.5rem 1rem;
+      width:50%;
+      
+      .selected-color{
+        background-color: transparent;
+        border: 1px white solid;
+        margin-right: 1.5rem;
+        width:35px;
+        height:35px;
+      }
+
+      #selected-color-value{
+        background-color: #000;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        padding: 0.75rem 0.5rem;
+        color:white;
+
+      }
+
+      .input-wrapper {
+        position:relative;
+
+        .copy-button {
+          width: 25px;
+          height:25px;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+        }
+      }
     }
   }
 
   .right-side {
     .canvas-wrapper {
       position: relative;
+      min-width: 50%;
+      min-height: 50vh;
+      // border: 1px solid black;
+      border-radius: 1rem;
+      background-color: #2f2f2f;
+      .file-input-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 50vh;
+        justify-content: center;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+      }
+
+      .preview-cursor{
+        display:none;
+      }
+    }
+
+    .canvas-wrapper--hide {
+
+      background-color: transparent !important;
     }
   }
 }
@@ -52,11 +132,11 @@ th {
 .magnifier-wrapper {
   width: 100px;
   height: 100px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9;
-  display: none;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // z-index: 9;
+  // display: none;
 }
 .magnifier-pointer {
   width: 18px;
@@ -67,4 +147,14 @@ th {
   top: 40px; //50%;
   // transform: translate(-50%, -50%);
   z-index: 10;
+}
+
+.hovered-color-preview {
+  width: 100%;
+  min-height: 25px;
+  display: flex;
+  background-color: white;
+  div {
+    width: 50%;
+  }
 }
